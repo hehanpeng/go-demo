@@ -22,7 +22,9 @@ func Test(t *testing.T) {
 
 	orderRequest := &message.OrderRequest{OrderId: "201907300001", TimeStamp: time.Now().Unix()}
 	orderInfo, err := orderServiceClient.GetOrderInfo(context.Background(), orderRequest)
-	if orderInfo != nil {
+	if err != nil {
+		panic(err)
+	} else {
 		fmt.Println(orderInfo.GetOrderId())
 		fmt.Println(orderInfo.GetOrderName())
 		fmt.Println(orderInfo.GetOrderStatus())
